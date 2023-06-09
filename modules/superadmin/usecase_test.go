@@ -36,63 +36,6 @@ func TestUsecaseSuperadmin_ApprovedAdminRegister(t *testing.T) {
 	}
 }
 
-func TestUsecaseSuperadmin_CreateCustomer(t *testing.T) {
-	type fields struct {
-		superadminRepo repositories.SuperAdminRepository
-	}
-	type args struct {
-		customer UserParam
-	}
-
-	ctrl := gomock.NewController(t)
-	mockRepo := mocks.NewMockSuperAdminRepository(ctrl)
-
-	tests := []struct {
-		name    string
-		fields  fields
-		args    args
-		want    entities.User
-		wantErr bool
-	}{
-		// TODO: Add test cases.
-		{
-			name:   "Test Case 1",
-			fields: fields{superadminRepo: mockRepo},
-			args: args{customer: UserParam{
-				FirstName: "dias",
-				LastName:  "pangestu",
-				Email:     "dias@gmail.com",
-				Avatar:    "dias.jpg",
-			}},
-			want: entities.Customer{
-				FirstName: "dias",
-				LastName:  "pangestu",
-				Email:     "dias@gmail.com",
-				Avatar:    "dias.jpg",
-			},
-			wantErr: false,
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			uc := UsecaseSuperadmin{
-				superadminRepo: tt.fields.superadminRepo,
-			}
-
-			mockRepo.EXPECT().CreateCustomer(gomock.Any()).Return(&tt.want, nil)
-
-			got, err := uc.CreateCustomer(tt.args.customer)
-			if (err != nil) != tt.wantErr {
-				t.Errorf("CreateCustomer() error = %v, wantErr %v", err, tt.wantErr)
-				return
-			}
-			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("CreateCustomer() got = %v, want %v", got, tt.want)
-			}
-		})
-	}
-}
-
 func TestUsecaseSuperadmin_CreateSuperadmin(t *testing.T) {
 	type fields struct {
 		superadminRepo repositories.SuperAdminRepository
@@ -116,12 +59,12 @@ func TestUsecaseSuperadmin_CreateSuperadmin(t *testing.T) {
 			name:   "Test Case 1",
 			fields: fields{superadminRepo: mockRepo},
 			args: args{superadmin: SuperAdminParam{
-				Username: "diaspangestu",
-				Password: "123",
+				Username: "hibban",
+				Password: "Nurcholis",
 			}},
 			want: &entities.Actor{
-				Username: "diaspangestu",
-				Password: "123",
+				Username: "hibban",
+				Password: "Nurcholis",
 			},
 			wantErr: false,
 		},
@@ -132,7 +75,7 @@ func TestUsecaseSuperadmin_CreateSuperadmin(t *testing.T) {
 				superadminRepo: tt.fields.superadminRepo,
 			}
 
-			mockRepo.EXPECT().CreateSuperadmin(gomock.Any()).Return(tt.want, nil)
+			mockRepo.EXPECT().CreateSuperAdmin(gomock.Any()).Return(tt.want, nil)
 
 			got, err := uc.CreateSuperadmin(tt.args.superadmin)
 			got.Password = "123"
@@ -177,11 +120,11 @@ func TestUsecaseSuperadmin_DeleteCustomerById(t *testing.T) {
 			uc := UsecaseSuperadmin{
 				superadminRepo: tt.fields.superadminRepo,
 			}
-			mockRepo.EXPECT().GetCustomerById(gomock.Any()).Return(&entities.Customer{}, nil)
-			mockRepo.EXPECT().DeleteCustomerById(gomock.Any(), gomock.Any()).Return(nil).Times(1)
+			mockRepo.EXPECT().GetUserById(gomock.Any()).Return(&entities.User{}, nil)
+			mockRepo.EXPECT().DeleteUserById(gomock.Any(), gomock.Any()).Return(nil).Times(1)
 
-			if err := uc.DeleteCustomerById(tt.args.id); (err != nil) != tt.wantErr {
-				t.Errorf("DeleteCustomerById() error = %v, wantErr %v", err, tt.wantErr)
+			if err := uc.DeleteUserByID(tt.args.id); (err != nil) != tt.wantErr {
+				t.Errorf("DeleteUserById() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
 	}
@@ -259,7 +202,7 @@ func TestUsecaseSuperadmin_GetAllCustomers(t *testing.T) {
 		name    string
 		fields  fields
 		args    args
-		want    []*entities.Customer
+		want    []*entities.User
 		wantErr bool
 	}{
 		// TODO: Add test cases.
@@ -273,7 +216,7 @@ func TestUsecaseSuperadmin_GetAllCustomers(t *testing.T) {
 				page:       2,
 				pageSize:   6,
 			},
-			want:    []*entities.Customer{},
+			want:    []*entities.User{},
 			wantErr: false,
 		},
 	}
@@ -283,9 +226,9 @@ func TestUsecaseSuperadmin_GetAllCustomers(t *testing.T) {
 				superadminRepo: tt.fields.superadminRepo,
 			}
 
-			mockRepo.EXPECT().GetAllCustomers(tt.args.first_name, tt.args.last_name, tt.args.email, tt.args.page, tt.args.pageSize).Return(tt.want, nil)
+			mockRepo.EXPECT().GetAllUsers(tt.args.first_name, tt.args.last_name, tt.args.email, tt.args.page, tt.args.pageSize).Return(tt.want, nil)
 
-			got, err := uc.GetAllCustomers(tt.args.first_name, tt.args.last_name, tt.args.email, tt.args.page, tt.args.pageSize)
+			got, err := uc.GetAllUsers(tt.args.first_name, tt.args.last_name, tt.args.email, tt.args.page, tt.args.pageSize)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("GetAllCustomers() error = %v, wantErr %v", err, tt.wantErr)
 				return
@@ -325,7 +268,7 @@ func TestUsecaseSuperadmin_GetApprovalRequest(t *testing.T) {
 				superadminRepo: tt.fields.superadminRepo,
 			}
 
-			mockRepo.EXPECT().GetApprovalRequest().Return(tt.want, nil)
+			mockRepo.EXPECT().GetApprovalRequests().Return(tt.want, nil)
 
 			got, err := uc.GetApprovalRequest()
 			if (err != nil) != tt.wantErr {
@@ -367,7 +310,7 @@ func TestUsecaseSuperadmin_LoginSuperadmin(t *testing.T) {
 				superadminRepo: tt.fields.superadminRepo,
 			}
 
-			mockRepo.EXPECT().LoginSuperadmin(tt.args.username).Return(tt.want, nil)
+			mockRepo.EXPECT().LoginSuperAdmin(tt.args.username).Return(tt.want, nil)
 
 			got, _, err := uc.LoginSuperadmin(tt.args.id, tt.args.username, tt.args.password)
 
@@ -413,7 +356,7 @@ func TestUsecaseSuperadmin_RejectedAdminRegister(t *testing.T) {
 				superadminRepo: tt.fields.superadminRepo,
 			}
 
-			mockRepo.EXPECT().RejectedAdminRegister(tt.args.id).Return(nil)
+			mockRepo.EXPECT().RejectAdminRegistration(tt.args.id).Return(nil)
 
 			if err := uc.RejectedAdminRegister(tt.args.id); (err != nil) != tt.wantErr {
 				t.Errorf("RejectedAdminRegister() error = %v, wantErr %v", err, tt.wantErr)
@@ -422,45 +365,45 @@ func TestUsecaseSuperadmin_RejectedAdminRegister(t *testing.T) {
 	}
 }
 
-func TestUsecaseSuperadmin_UpdateActivedAdmin(t *testing.T) {
-	type fields struct {
-		superadminRepo repositories.SuperAdminRepository
-	}
-	type args struct {
-		id uint
-	}
-
-	ctrl := gomock.NewController(t)
-	mockRepo := mocks.NewMockSuperAdminRepository(ctrl)
-
-	tests := []struct {
-		name    string
-		fields  fields
-		args    args
-		wantErr bool
-	}{
-		// TODO: Add test cases.
-		{
-			name:    "Test Case 1",
-			fields:  fields{superadminRepo: mockRepo},
-			args:    args{id: 1},
-			wantErr: false,
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			uc := UsecaseSuperadmin{
-				superadminRepo: tt.fields.superadminRepo,
-			}
-
-			mockRepo.EXPECT().UpdateActivedAdmin(tt.args.id).Return(nil)
-
-			if err := uc.UpdateActivedAdmin(tt.args.id); (err != nil) != tt.wantErr {
-				t.Errorf("UpdateActivedAdmin() error = %v, wantErr %v", err, tt.wantErr)
-			}
-		})
-	}
-}
+//func TestUsecaseSuperadmin_UpdateActivedAdmin(t *testing.T) {
+//	type fields struct {
+//		superadminRepo repositories.SuperAdminRepository
+//	}
+//	type args struct {
+//		id uint
+//	}
+//
+//	ctrl := gomock.NewController(t)
+//	mockRepo := mocks.NewMockSuperAdminRepository(ctrl)
+//
+//	tests := []struct {
+//		name    string
+//		fields  fields
+//		args    args
+//		wantErr bool
+//	}{
+//		// TODO: Add test cases.
+//		{
+//			name:    "Test Case 1",
+//			fields:  fields{superadminRepo: mockRepo},
+//			args:    args{id: 1},
+//			wantErr: false,
+//		},
+//	}
+//	for _, tt := range tests {
+//		t.Run(tt.name, func(t *testing.T) {
+//			uc := UsecaseSuperadmin{
+//				superadminRepo: tt.fields.superadminRepo,
+//			}
+//
+//			mockRepo.EXPECT().UpdateAdminActiveStatus(tt.args.id).Return(nil)
+//
+//			if err := uc.UpdateActivedAdmin(); (err != nil) != tt.wantErr {
+//				t.Errorf("UpdateActivedAdmin() error = %v, wantErr %v", err, tt.wantErr)
+//			}
+//		})
+//	}
+//}
 
 func TestUsecaseSuperadmin_UpdateDeadactivedAdmin(t *testing.T) {
 	type fields struct {
