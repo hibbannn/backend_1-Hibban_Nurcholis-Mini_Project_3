@@ -2,7 +2,7 @@ package middleware
 
 import (
 	"github.com/gin-gonic/gin"
-	"gitlab.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/helpers"
+	"github.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/helpers"
 	"net/http"
 )
 

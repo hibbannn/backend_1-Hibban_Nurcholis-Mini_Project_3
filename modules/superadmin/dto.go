@@ -1,6 +1,6 @@
 package superadmin
 
-import "gitlab.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/dto"
+import "github.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/dto"
 
 type UserParam struct {
 	FirstName string `json:"first_name"`

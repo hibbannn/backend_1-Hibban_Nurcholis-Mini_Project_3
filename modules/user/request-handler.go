@@ -2,8 +2,8 @@ package user
 
 import (
 	"github.com/gin-gonic/gin"
-	"gitlab.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/dto"
-	"gitlab.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/repositories"
+	"github.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/dto"
+	"github.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/repositories"
 	"gorm.io/gorm"
 	"net/http"
 	"strconv"

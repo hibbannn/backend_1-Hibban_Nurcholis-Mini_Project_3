@@ -1,8 +1,8 @@
 package admin
 
 import (
-	"gitlab.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/dto"
-	"gitlab.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/entities"
+	"github.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/dto"
+	"github.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/entities"
 )
 
 type ControllerAdminInterface interface {

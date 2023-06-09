@@ -2,7 +2,7 @@ package superadmin
 
 import (
 	"github.com/gin-gonic/gin"
-	"gitlab.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/middleware"
+	"github.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/middleware"
 )
 
 type RouterSuperadmin struct {

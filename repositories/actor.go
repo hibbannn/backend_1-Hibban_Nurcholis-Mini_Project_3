@@ -3,7 +3,7 @@ package repositories
 import (
 	"encoding/json"
 	"errors"
-	"gitlab.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/entities"
+	"github.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/entities"
 	"gorm.io/gorm"
 	"io"
 	"net/http"

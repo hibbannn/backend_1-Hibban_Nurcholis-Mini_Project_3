@@ -1,8 +1,8 @@
 package user
 
 import (
-	"gitlab.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/entities"
-	"gitlab.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/repositories"
+	"github.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/entities"
+	"github.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/repositories"
 	"time"
 )
 
