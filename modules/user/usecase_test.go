@@ -124,6 +124,5 @@ func TestDeleteUserById(t *testing.T) {
 	mockRepo.EXPECT().DeleteUserById(userID).Return(nil)
 
 	err := usecase.DeleteUserById(userID)
-
 	assert.NoError(t, err)
 }
