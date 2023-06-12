@@ -1,6 +1,6 @@
 package user
 
-import "gitlab.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/dto"
+import "github.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/dto"
 
 type ControllerUserInterface interface {
 	CreateUser(req UserParam) (interface{}, error)

@@ -1,9 +1,10 @@
 package admin
 
 import (
-	"gitlab.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/entities"
-	"gitlab.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/helpers"
-	"gitlab.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/repositories"
+	"github.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/entities"
+	"github.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/helpers"
+	"github.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/mocks"
+	"github.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/repositories"
 	"time"
 )
 
@@ -18,6 +19,7 @@ type UsecaseAdminInterface interface {
 
 type UsecaseAdmin struct {
 	adminRepo repositories.AdminRepository
+	AdminRepo *mocks.MockAdminRepositoryInterface
 }
 
 func (uc UsecaseAdmin) LoginAdmin(username, password string) (*entities.Actor, string, error) {

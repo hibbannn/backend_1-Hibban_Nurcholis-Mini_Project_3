@@ -1,7 +1,7 @@
 package user
 
 import (
-	"gitlab.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/dto"
+	"github.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/dto"
 )
 
 // UserParam represents the user parameter in the request

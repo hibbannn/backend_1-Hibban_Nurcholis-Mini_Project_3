@@ -1,6 +1,6 @@
 package admin
 
-import "gitlab.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/dto"
+import "github.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/dto"
 
 type AdminParam struct {
 	ID       uint   `json:"id"`

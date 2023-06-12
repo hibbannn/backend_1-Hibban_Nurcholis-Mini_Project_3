@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	db2 "gitlab.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/db"
-	"gitlab.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/modules/admin"
-	"gitlab.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/modules/user"
+	db2 "github.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/db"
+	"github.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/modules/admin"
+	"github.com/hibbannn/backend_1-Hibban_Nurcholis-Mini_Project_2/modules/user"
 )
 
 func main() {

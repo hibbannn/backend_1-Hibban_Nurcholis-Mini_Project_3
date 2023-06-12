@@ -4,12 +4,16 @@ import (
 	"fmt"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"log"
+	"os"
 )
 
 func ConnectToDatabase() (*gorm.DB, error) {
-	db, err := gorm.Open(mysql.Open("root:bootcamp@tcp(localhost:3306)/crm_database?charset=utf8mb4&parseTime=True&loc=UTC"), &gorm.Config{})
+	dsn := fmt.Sprintf("root:%s@tcp(%s:3306)/%s?charset=utf8mb4&parseTime=True&loc=UTC", os.Getenv("DB_PASSWORD"), os.Getenv("DB_HOST"), os.Getenv("DB_NAME"))
+	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
-		return nil, fmt.Errorf("failed to connect to database: %w", err)
+		log.Println("gorm.open", err)
 	}
 	return db, nil
+
 }
